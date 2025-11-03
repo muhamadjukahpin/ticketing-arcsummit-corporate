@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="id" data-bs-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ArcSummit — Corporate Ticketing</title>
+  <meta name="description" content="Website ticketing bergaya corporate: bersih, elegan, dan profesional. Responsif untuk mobile & tablet. Dibuat dengan Bootstrap 5." />
+
+  <!-- Fonts & Framework -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand:#1849a9;      /* corporate blue */
+      --brand-600:#0f3a8a;  /* darker */
+      --brand-50:#eef3fb;   /* light */
+      --ink:#0a0a0a;        /* text */
+      --muted:#6b7280;      /* secondary text */
+      --card:#ffffff;       /* card bg */
+      --line:#e5e7eb;       /* divider */
+      --radius:16px;
+      --shadow:0 6px 24px rgba(16,24,40,.08), 0 2px 8px rgba(16,24,40,.06);
+    }
+
+    html,body{ font-family:"Inter","IBM Plex Sans",system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--ink); background:#fafafa }
+
+    /* ====== Subtle grid background ====== */
+    .bg-grid{ position:relative; background: radial-gradient(1200px 600px at 70% -10%, rgba(24,73,169,.08), transparent 60%), #f7f9fc; }
+    .bg-grid::before{ content:""; position:absolute; inset:0; background-image: linear-gradient(transparent 95%, rgba(24,73,169,.08) 95%), linear-gradient(90deg, transparent 95%, rgba(24,73,169,.08) 95%); background-size: 48px 48px; opacity:.25; mask-image: radial-gradient(700px 600px at 50% 30%, #000, transparent 70%); pointer-events:none }
+
+    .container-narrow{ max-width: 1080px; }
+
+    /* ====== Navbar ====== */
+    .navbar{ background:#ffffffaa; backdrop-filter:saturate(130%) blur(6px); border-bottom:1px solid var(--line) }
+    .navbar-brand{ font-weight:800; letter-spacing:.2px; color:var(--brand) }
+    .navbar .btn-brand{ background:var(--brand); color:#fff; border-radius:999px; font-weight:700 }
+    .navbar .btn-brand:hover{ background:var(--brand-600) }
+
+    /* ====== Hero ====== */
+    .hero{ padding-block: clamp(48px, 5vw, 96px); }
+    .hero h1{ font-size: clamp(2rem, 1.4rem + 2.6vw, 3.4rem); font-weight:800; letter-spacing:.2px }
+    .lead{ color:var(--muted) }
+    .hero-card{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow) }
+    .kpis .item{ border-right:1px solid var(--line) }
+    .kpis .item:last-child{ border-right:none }
+
+    /* ====== Section titles ====== */
+    .section-title{ font-weight:800; letter-spacing:.2px }
+    .section-note{ color:var(--muted) }
+
+    /* ====== Cards ====== */
+    .card-clean{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow) }
+    .price{ font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.1rem); font-weight:800; color:var(--brand-600) }
+    .badge-tier{ background:var(--brand-50); color:var(--brand-600); border:1px solid #dbe5fb }
+
+    /* ====== Timeline ====== */
+    .timeline{ position:relative; padding-left:24px }
+    .timeline::before{ content:""; position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(var(--brand), transparent) }
+    .timeline .step{ position:relative; margin-bottom:16px }
+    .timeline .step::before{ content:""; position:absolute; left:-20px; top:4px; width:10px; height:10px; border-radius:50%; background:var(--brand) }
+
+    /* ====== Footer ====== */
+    .footer{ border-top:1px solid var(--line); background:#fff }
+    .footer a{ color:var(--muted); text-decoration:none }
+    .footer a:hover{ color:var(--brand-600) }
+
+    /* ====== Utilities ====== */
+    .btn-brand{ background:var(--brand); color:#fff; border-radius:12px; font-weight:700; border:none }
+    .btn-brand:hover{ background:var(--brand-600) }
+    .btn-outline-brand{ color:var(--brand-600); border-color:var(--brand-600); border-radius:12px; font-weight:700 }
+    .btn-outline-brand:hover{ color:#fff; background:var(--brand-600) }
+  </style>
+</head>
+<body class="bg-grid">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container container-narrow py-2">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <i class="bi bi-building-fill-check"></i> ArcSummit
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title">Navigasi</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+            <li class="nav-item"><a class="nav-link" href="#benefits">Benefit</a></li>
+            <li class="nav-item"><a class="nav-link" href="#tickets">Tiket</a></li>
+            <li class="nav-item"><a class="nav-link" href="#agenda">Agenda</a></li>
+            <li class="nav-item"><a class="nav-link" href="#venue">Venue</a></li>
+            <li class="nav-item"><a class="btn btn-brand ms-lg-2" href="#tickets"><i class="bi bi-ticket-perforated me-1"></i> Beli Tiket</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container container-narrow">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-7">
+          <h1>Kelas Corporate, Flow Ticketing <span style="color:var(--brand)">Tanpa Hambatan</span></h1>
+          <p class="lead mb-4">Website ticketing berstandar enterprise untuk konferensi, konser korporat, dan peluncuran produk. Desain rapi, cepat, dan terpercaya—siap dipasang ke domain perusahaan Anda.</p>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="#tickets" class="btn btn-brand btn-lg px-4"><i class="bi bi-cart-check me-2"></i>Mulai Pesan</a>
+            <a href="#benefits" class="btn btn-outline-brand btn-lg px-4">Lihat Fitur</a>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="hero-card p-4">
+            <div class="row text-center kpis g-0">
+              <div class="col-4 item">
+                <div class="fw-bold" style="font-size:1.6rem">99.9%</div>
+                <small class="text-muted">Uptime</small>
+              </div>
+              <div class="col-4 item">
+                <div class="fw-bold" style="font-size:1.6rem">< 2s</div>
+                <small class="text-muted">TTFB</small>
+              </div>
+              <div class="col-4">
+                <div class="fw-bold" style="font-size:1.6rem">ISO</div>
+                <small class="text-muted">27001-ready</small>
+              </div>
+            </div>
+            <hr class="my-3">
+            <ul class="list-unstyled m-0 small">
+              <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Invoice & e‑ticket dengan barcode</li>
+              <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>QRIS / VA / Kartu terintegrasi</li>
+              <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Support corporate data (Nama Perusahaan, NPWP)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BENEFITS -->
+  <section id="benefits" class="py-5">
+    <div class="container container-narrow">
+      <div class="d-flex justify-content-between align-items-end mb-3 flex-wrap gap-2">
+        <h2 class="section-title m-0">Mengapa Perusahaan Memilih Kami</h2>
+        <div class="section-note">Stabil, aman, & mudah dioperasikan oleh tim EO</div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card-clean p-4 h-100">
+            <div class="d-flex align-items-center gap-3 mb-2"><i class="bi bi-shield-lock text-primary" style="font-size:1.6rem"></i><strong>Keamanan & Kepatuhan</strong></div>
+            <p class="text-muted small m-0">Prinsip keamanan data dan audit trail. Dukungan kebijakan IT perusahaan dan akses terbatas role‑based.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-clean p-4 h-100">
+            <div class="d-flex align-items-center gap-3 mb-2"><i class="bi bi-columns-gap text-primary" style="font-size:1.6rem"></i><strong>UI/UX Profesional</strong></div>
+            <p class="text-muted small m-0">Desain bersih, fokus pada keterbacaan, jalur checkout sederhana—minim friksi dan konversi lebih tinggi.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-clean p-4 h-100">
+            <div class="d-flex align-items-center gap-3 mb-2"><i class="bi bi-diagram-3 text-primary" style="font-size:1.6rem"></i><strong>Integrasi Fleksibel</strong></div>
+            <p class="text-muted small m-0">Terhubung ke payment gateway, CRM, dan sistem kehadiran. Dukungan webhook & export CSV.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKETS -->
+  <section id="tickets" class="py-5" style="background:#fff">
+    <div class="container container-narrow">
+      <div class="text-center mb-4">
+        <h2 class="section-title">Paket Tiket</h2>
+        <p class="section-note">Harga transparan. E‑ticket akan dikirim otomatis setelah pembayaran sukses.</p>
+      </div>
+
+      <div class="row g-4 align-items-stretch">
+        <!-- Standard -->
+        <div class="col-md-4">
+          <div class="card-clean p-4 h-100 d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="badge badge-tier">Standard</span>
+              <span class="text-muted">Sisa <span class="fw-bold" id="stock-standard">300</span></span>
+            </div>
+            <div class="price mb-2">IDR <span data-price="STANDARD">150.000</span></div>
+            <ul class="list-unstyled small text-muted mb-4">
+              <li class="mb-1"><i class="bi bi-check-lg text-success me-2"></i> Akses area umum</li>
+              <li class="mb-1"><i class="bi bi-check-lg text-success me-2"></i> E‑ticket & barcode</li>
+              <li class="mb-1"><i class="bi bi-check-lg text-success me-2"></i> Email konfirmasi</li>
+            </ul>
+            <button class="btn btn-brand mt-auto add-to-cart" data-tier="STANDARD">Pilih Standard</button>
+          </div>
+        </div>
+        <!-- Business -->
+        <div class="col-md-4">
+          <div class="card-clean p-4 h-100 d-flex flex-column position-relative">
+            <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill text-bg-primary">Rekomendasi</span>
+            <div class="d-flex justify-content-between align-items-center mb-2 mt-3">
+              <span class="badge badge-tier">Business</span>
+              <span class="text-muted">Sisa <span class="fw-bold" id="stock-business">150</span></span>
+            </div>
+            <div class="price mb-2">IDR <span data-price="BUSINESS">350.000</span></div>
+            <ul class="list-unstyled small text-muted mb-4">
+              <li class="mb-1"><i class="bi bi-check-lg text-success me-2"></i> Kursi prioritas</li>
+              <li class="mb-1"><i class="bi bi-check-lg text-success me-2"></i> Akses lounge & coffee</li>
+              <li class="mb-1"><i class="bi bi-check-lg text-success me-2"></i> Sertifikat kehadiran</li>
+            </ul>
+            <button class="btn btn-brand mt-auto add-to-cart" data-tier="BUSINESS">Pilih Business</button>
+          </div>
+        </div>
+        <!-- Corporate Box -->
+        <div class="col-md-4">
+          <div class="card-clean p-4 h-100 d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="badge badge-tier">Corporate Box</span>
+              <span class="text-muted">Sisa <span class="fw-bold" id="stock-corp">20</span></span>
+            </div>
+            <div class="price mb-2">IDR <span data-price="CORP">1.800.000</span></div>
+            <ul class="list-unstyled small text-muted mb-4">
+              <li class="mb-1"><i class="bi bi-check-lg text-success me-2"></i> 6 Kursi khusus tim</li>
+              <li class="mb-1"><i class="bi bi-check-lg text-success me-2"></i> Ruang meeting kecil</li>
+              <li class="mb-1"><i class="bi bi-check-lg text-success me-2"></i> Paket snack premium</li>
+            </ul>
+            <button class="btn btn-brand mt-auto add-to-cart" data-tier="CORP">Pilih Corporate</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile CTA -->
+      <div class="d-lg-none mt-3">
+        <div class="card-clean p-2 d-flex align-items-center justify-content-between">
+          <div>
+            <strong>Siap checkout?</strong>
+            <div class="small text-muted">Pilih paket & lanjutkan</div>
+          </div>
+          <button class="btn btn-brand" data-bs-toggle="offcanvas" data-bs-target="#cartCanvas"><i class="bi bi-bag-check me-1"></i>Checkout</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENDA -->
+  <section id="agenda" class="py-5">
+    <div class="container container-narrow">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="card-clean p-4 h-100">
+            <h5 class="mb-3"><i class="bi bi-calendar2-event me-2 text-primary"></i>Agenda Singkat</h5>
+            <div class="timeline">
+              <div class="step"><strong>08:00</strong> — Registrasi dibuka</div>
+              <div class="step"><strong>09:00</strong> — Opening & Keynote</div>
+              <div class="step"><strong>10:30</strong> — Sesi Panel I</div>
+              <div class="step"><strong>13:00</strong> — Networking Lunch</div>
+              <div class="step"><strong>14:30</strong> — Workshop / Breakout</div>
+              <div class="step"><strong>17:00</strong> — Penutupan</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card-clean p-4 h-100">
+            <h5 class="mb-3"><i class="bi bi-card-checklist me-2 text-primary"></i>Catatan & Kebijakan</h5>
+            <ul class="small text-muted m-0">
+              <li>Mohon membawa identitas & e‑ticket saat masuk.</li>
+              <li>Refund mengikuti kebijakan penyelenggara.</li>
+              <li>Dress code: business casual.</li>
+              <li>Mohon hadir 15 menit sebelum sesi dimulai.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENUE -->
+  <section id="venue" class="py-5" style="background:#fff">
+    <div class="container container-narrow">
+      <div class="row g-4 align-items-stretch">
+        <div class="col-lg-6">
+          <div class="card-clean p-4 h-100">
+            <h5 class="mb-2"><i class="bi bi-geo-alt me-2 text-primary"></i>Venue</h5>
+            <p class="text-muted">ICE BSD • Hall 1–2, Tangerang</p>
+            <div class="ratio ratio-16x9 rounded-3 overflow-hidden">
+              <iframe title="Map" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.095201506928!2d106.635!3d-6.248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f9f1c3b1b0a7%3A0x4f2c7d5d3a7b9f2!2sIndonesia%20Convention%20Exhibition%20(ICE%20BSD)!5e0!3m2!1sen!2sid!4v1700000000000"></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card-clean p-4 h-100">
+            <h5 class="mb-3"><i class="bi bi-telephone-outbound me-2 text-primary"></i>Butuh Bantuan?</h5>
+            <ul class="small text-muted m-0">
+              <li>Support email: support@arcsummit.id</li>
+              <li>Hotline event: +62 811‑0000‑123</li>
+              <li>Live chat (jam kerja)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer py-4">
+    <div class="container container-narrow">
+      <div class="row g-3 align-items-center">
+        <div class="col-md-6">
+          <strong>ArcSummit</strong> — Corporate Ticketing
+          <div class="text-muted">© 2025 ArcSummit. All rights reserved.</div>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <a class="me-3" href="#">Kebijakan Privasi</a>
+          <a class="me-3" href="#">Syarat & Ketentuan</a>
+          <a href="#">Kontak</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- OFFCANVAS CHECKOUT -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartCanvas">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title"><i class="bi bi-bag me-2"></i>Checkout Tiket</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <div class="card-clean p-3 mb-3">
+        <div class="row g-2 align-items-end">
+          <div class="col-12 col-md-6">
+            <label class="form-label">Tier</label>
+            <select id="tier" class="form-select">
+              <option value="STANDARD">Standard</option>
+              <option value="BUSINESS" selected>Business</option>
+              <option value="CORP">Corporate Box</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">Jumlah</label>
+            <div class="input-group">
+              <button class="btn btn-outline-secondary" type="button" id="qtyMinus"><i class="bi bi-dash"></i></button>
+              <input type="number" id="qty" class="form-control text-center" value="1" min="1" max="10">
+              <button class="btn btn-outline-secondary" type="button" id="qtyPlus"><i class="bi bi-plus"></i></button>
+            </div>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Kode Promo</label>
+            <div class="input-group">
+              <input type="text" id="promo" class="form-control" placeholder="Masukkan kode (opsional)">
+              <button class="btn btn-outline-primary" id="applyPromo">Pakai</button>
+            </div>
+            <div id="promoMsg" class="form-text"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-clean p-3 mb-3">
+        <h6 class="mb-2">Ringkasan</h6>
+        <div class="d-flex justify-content-between small text-muted"><span>Harga per tiket</span><span id="summaryPrice">—</span></div>
+        <div class="d-flex justify-content-between small text-muted"><span>Qty</span><span id="summaryQty">1</span></div>
+        <div class="d-flex justify-content-between small text-muted"><span>Diskon</span><span id="summaryDiscount">0</span></div>
+        <hr class="my-2">
+        <div class="d-flex justify-content-between align-items-center">
+          <strong>Total</strong>
+          <strong id="summaryTotal">—</strong>
+        </div>
+      </div>
+
+      <form class="card-clean p-3 mb-3" onsubmit="event.preventDefault(); alert('Simulasi pembayaran sukses. E‑ticket akan dikirim!');">
+        <h6 class="mb-2">Data Pemesan</h6>
+        <div class="row g-2">
+          <div class="col-12 col-md-6">
+            <label class="form-label">Nama Lengkap</label>
+            <input required type="text" class="form-control" placeholder="Nama sesuai KTP">
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">Email</label>
+            <input required type="email" class="form-control" placeholder="nama@perusahaan.com">
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">No. WhatsApp</label>
+            <input required type="tel" class="form-control" placeholder="08xxxxxxxxxx">
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">Nama Perusahaan (opsional)</label>
+            <input type="text" class="form-control" placeholder="PT Contoh Indonesia">
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">NPWP (opsional)</label>
+            <input type="text" class="form-control" placeholder="00.000.000.0-000.000">
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">Metode Pembayaran</label>
+            <select class="form-select">
+              <option>QRIS</option>
+              <option>Kartu Debit/Kredit</option>
+              <option>Virtual Account</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-brand w-100 mt-3" type="submit"><i class="bi bi-shield-lock me-2"></i>Bayar Sekarang</button>
+      </form>
+
+      <p class="small text-muted mt-auto">Dengan melanjutkan, Anda menyetujui S&K dan Kebijakan Privasi.</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // ===== Utilities =====
+    const IDR = (n)=> new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',minimumFractionDigits:0}).format(n||0);
+
+    // Price list & stock (dummy)
+    const PRICES = { STANDARD: 150000, BUSINESS: 350000, CORP: 1800000 };
+    const STOCKS = { STANDARD: 300, BUSINESS: 150, CORP: 20 };
+
+    const tierEl = document.getElementById('tier');
+    const qtyEl = document.getElementById('qty');
+    const promoEl = document.getElementById('promo');
+    const promoMsg = document.getElementById('promoMsg');
+    const summaryPrice = document.getElementById('summaryPrice');
+    const summaryQty = document.getElementById('summaryQty');
+    const summaryDiscount = document.getElementById('summaryDiscount');
+    const summaryTotal = document.getElementById('summaryTotal');
+
+    let appliedDiscount = 0; // absolute number
+
+    function recalc(){
+      const tier = tierEl.value;
+      const qty = Math.max(1, Math.min(10, parseInt(qtyEl.value||1)));
+      qtyEl.value = qty;
+      const price = PRICES[tier];
+      const subtotal = price * qty;
+      const discount = Math.min(appliedDiscount, subtotal);
+      const total = subtotal - discount;
+      summaryPrice.textContent = IDR(price);
+      summaryQty.textContent = qty;
+      summaryDiscount.textContent = '-' + IDR(discount);
+      summaryTotal.textContent = IDR(total);
+    }
+
+    document.getElementById('qtyMinus').addEventListener('click', ()=>{ qtyEl.value = Math.max(1, (parseInt(qtyEl.value)||1) - 1); recalc(); });
+    document.getElementById('qtyPlus').addEventListener('click', ()=>{ qtyEl.value = Math.min(10, (parseInt(qtyEl.value)||1) + 1); recalc(); });
+    tierEl.addEventListener('change', recalc);
+    qtyEl.addEventListener('input', recalc);
+
+    document.getElementById('applyPromo').addEventListener('click', ()=>{
+      const code = (promoEl.value||'').trim().toUpperCase();
+      if(!code){ promoMsg.textContent = 'Masukkan kode promo.'; promoMsg.className='form-text text-warning'; appliedDiscount=0; return recalc(); }
+      if(code==='ARC10'){
+        const tier = tierEl.value; const price = PRICES[tier]; const qty = parseInt(qtyEl.value)||1;
+        const subtotal = price*qty; appliedDiscount = Math.floor(subtotal*0.10);
+        promoMsg.textContent = 'Diskon 10% berhasil diterapkan.'; promoMsg.className='form-text text-success';
+      } else {
+        promoMsg.textContent = 'Kode tidak valid.'; promoMsg.className='form-text text-danger'; appliedDiscount=0;
+      }
+      recalc();
+    });
+
+    // Add-to-cart buttons open checkout with selected tier
+    document.querySelectorAll('.add-to-cart').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const tier = btn.dataset.tier;
+        const off = new bootstrap.Offcanvas('#cartCanvas');
+        tierEl.value = tier; appliedDiscount = 0; promoEl.value=''; promoMsg.textContent='';
+        recalc(); off.show();
+      });
+    });
+
+    // Initialize default summary
+    recalc();
+
+    // Stock simulation (decrease when purchase submit)
+    document.querySelector('#cartCanvas form').addEventListener('submit', ()=>{
+      const t = tierEl.value; const q = parseInt(qtyEl.value)||1; STOCKS[t] = Math.max(0, STOCKS[t]-q);
+      const idMap = { STANDARD:'stock-standard', BUSINESS:'stock-business', CORP:'stock-corp' };
+      document.getElementById(idMap[t]).textContent = STOCKS[t];
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id.length>1 && document.querySelector(id)){
+          e.preventDefault(); document.querySelector(id).scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      })
+    });
+  </script>
+</body>
+</html>
